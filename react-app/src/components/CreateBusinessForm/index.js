@@ -44,7 +44,7 @@ const CreateBusinessForm = () => {
             errors.city="Invalid city.";
         }
 
-        if (!state || state.length != 2) {
+        if (!state || state.length !== 2) {
             errors.state="Invalid state.";
         }
 
