@@ -1,147 +1,105 @@
-.profile-dropdown {
-  position: absolute;
-}
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
 
-.hidden {
-  display: none;
-}
-
-
-/* General Styling */
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  margin: 0 15px;
-}
-
-.view-login-container{
+.nav-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h, 64px);
+  padding: 0 var(--sp-5, 24px);
+  background: var(--surface, #1a1a1a);
+  border-bottom: 1px solid var(--border, #333);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  gap: var(--sp-4, 16px);
 }
 
-.log-in-button{
-  width: calc(100% - 20px);
-  background-color: gold;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: white;
-  padding: 8px 12px;
-  margin-bottom: 10px;
-  font-size: medium;
-  border: none;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.log-in-button:hover {
-  background-color: darkred;
+.small-logo {
+  height: 40px;
+  width: auto;
+  border-radius: var(--r-md, 8px);
+  transition: transform var(--t-fast, 150ms ease), opacity var(--t-fast, 150ms ease);
 }
 
-.sign-up-button{
-  width: calc(100% - 20px);
-  background-color: #E6B567;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: white;
-  padding: 8px 12px;
-  font-size: medium;
-  border: none;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.small-logo:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
-.sign-up-button:hover {
-  background-color: darkred;
+/* Search area */
+.searchbar {
+  flex: 1;
+  max-width: 520px;
+  margin: 0 var(--sp-4, 16px);
 }
 
-/* NavLink and Button Styling */
-.view-business-button{
-  width: calc(100% - 20px);
-  background-color: #E6B567;
-  color: black;
-  padding: 8px 12px;
+/* Cart icon button */
+.cart-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-full, 9999px);
+  background: var(--surface-2, #242424);
+  border: 1px solid var(--border, #333);
+  color: var(--text, #f0f0f0);
+  font-size: 1.2rem;
+  transition: background var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+  flex-shrink: 0;
   text-decoration: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: medium;
-  margin-bottom: 0;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin: 10px;
 }
 
-.view-business-button:hover {
-  background-color: darkred;
+.cart-nav-btn:hover {
+  background: var(--surface-3, #2e2e2e);
+  border-color: var(--accent, #E6B567);
+  box-shadow: 0 0 0 2px var(--accent-dim, rgba(230,181,103,0.15));
+  color: var(--accent, #E6B567);
 }
 
-.logout-red-button{
-  width: calc(100% - 20px);
-  background-color: red;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: white;
-  padding: 8px 12px;
-  font-size: medium;
-  border: none;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.logout-red-button:hover {
-  background-color: darkred;
-}
-
-.create-business-button {
-  width: calc(100% - 20px);
-  background-color: #E6B567;
-  color: black;
-  padding: 8px 12px;
-  text-decoration: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: medium;
-  margin-bottom: 0;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin: 10px;
-}
-
-.create-business-button:hover {
-  background-color: darkred;
-}
-
-
-.profile-button{
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-  border-radius: 10px;
+/* Profile button */
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-full, 9999px);
+  background: var(--surface-2, #242424);
+  border: 1px solid var(--border, #333);
+  color: var(--text-2, #a0a0a0);
+  font-size: 1.3rem;
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  flex-shrink: 0;
 }
 
 .profile-button:hover {
-  border: 0;
-  background-color: #464646;
+  background: var(--surface-3, #2e2e2e);
+  border-color: var(--accent, #E6B567);
+  color: var(--accent, #E6B567);
 }
 
-/* Profile Dropdown Styling */
+/* Profile dropdown */
 .profile-dropdown {
   position: absolute;
-  top: 100%;
-  right: 7px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
-  display: block;
-  z-index: 999;
-
-
+  top: calc(var(--nav-h, 64px) + 8px);
+  right: var(--sp-5, 24px);
+  min-width: 220px;
+  background: var(--surface, #1a1a1a);
+  border: 1px solid var(--border, #333);
+  border-radius: var(--r-xl, 16px);
+  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,.65));
+  z-index: 300;
+  overflow: hidden;
+  padding: var(--sp-2, 8px);
 }
 
 .profile-dropdown.hidden {
@@ -149,149 +107,103 @@ li {
 }
 
 .profile-dropdown li {
-  /* position: absolute; */
-  background-color: #f9f9f9;
-  min-width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: var(--sp-3, 12px) var(--sp-4, 16px);
+  border-radius: var(--r-md, 8px);
+  font-size: 0.875rem;
+  color: var(--text-2, #a0a0a0);
   margin: 0;
-  padding: 10px 10px;
-  z-index: 1;
-  flex-direction: column;
-  row-gap: 5px;
-  background-color: rgb(5, 5, 5);
-  border-radius: 5px;
-  font-size: small;
-  box-shadow: 0px 0px 10px lightgray;
-  top: 80px;
-  right: 8px;
-  transform-origin: top;
-  list-style-type: none;
-  transition: background-color 0.3s ease-in-out;
+  box-shadow: none;
+  background: transparent;
+  transition: background var(--t-fast);
 }
 
-.profile-dropdown li:last-child {
-  border-bottom: none;
-
-}.profile-dropdown li:hover {
-  background-color: #e5e5e5;
+.profile-dropdown li:hover {
+  background: var(--surface-2, #242424);
+  color: var(--text, #f0f0f0);
 }
 
+.profile-dropdown li:first-child {
+  color: var(--text, #f0f0f0);
+  font-weight: 600;
+  cursor: default;
+}
+
+.profile-dropdown li:first-child:hover {
+  background: transparent;
+}
+
+/* Dropdown buttons */
 .profile-dropdown button {
   width: 100%;
   text-align: center;
-  /* padding-left: 10px; */
+  background: var(--danger-dim, rgba(239,68,68,0.12));
+  color: var(--danger, #ef4444);
+  border: 1px solid var(--danger, #ef4444);
+  padding: var(--sp-2, 8px) var(--sp-4, 16px);
+  border-radius: var(--r-md, 8px);
+  font-size: 0.875rem;
 }
 
-/* Modal Button Styling */
+.profile-dropdown button:hover {
+  background: var(--danger, #ef4444);
+  color: #fff;
+}
+
+/* Dropdown links */
+.view-business-button,
+.create-business-button {
+  display: block;
+  width: 100%;
+  padding: var(--sp-2, 8px) var(--sp-3, 12px);
+  background: var(--accent-dim, rgba(230,181,103,0.15));
+  color: var(--accent, #E6B567);
+  border-radius: var(--r-md, 8px);
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--sp-2, 8px);
+  transition: background var(--t-fast), color var(--t-fast);
+  text-decoration: none;
+}
+
+.view-business-button:hover,
+.create-business-button:hover {
+  background: var(--accent, #E6B567);
+  color: #111;
+}
+
+/* Login / Signup modal trigger buttons in dropdown */
 .open-modal-button {
-  background-color: #b5a240;
-  color: white;
-  padding: 10px 15px;
+  display: block;
+  width: calc(100% - var(--sp-4, 16px));
+  margin: var(--sp-1, 4px) var(--sp-2, 8px);
+  text-align: center;
+  background: var(--accent, #E6B567);
+  color: #111;
+  border: none;
+  border-radius: var(--r-md, 8px);
+  padding: var(--sp-2, 8px) var(--sp-4, 16px);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .open-modal-button:hover {
-  background-color: #262626;
+  background: var(--accent-hover, #f0c070);
 }
 
-/* Navigation Container */
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* padding: 10px; */
-  background-color: #141414;
-  border-bottom: 1px solid #272727;
-  position: relative;
-  padding-right: 20px;
+/* Logout button */
+.logout-red-button {
+  width: 100%;
+  background: var(--danger-dim, rgba(239,68,68,0.12));
+  color: var(--danger, #ef4444);
+  border: 1px solid var(--danger, #ef4444);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-md, 8px);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
-.nav-left {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.small-logo {
-  height: 45px;
-  width: 62px;
-  margin-right: 15px;
-  border-radius: 5px;
-  padding-top: 5px;
-  border: none;
-  color: #FFF;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s;
-}
-
-.small-logo2 {
-  height: 40px;
-  width: 62px;
-  margin-top: 4px;
-  margin-right: 15px;
-  border-radius: 5px;
-  padding-top: 5px;
-  border: none;
-  color: #FFF;
-  cursor: pointer;
-  background-color: white;
-  font-size: 1rem;
-  transition: background-color 0.2s;
-}
-
-/* Searchbar Style */
-.searchbar {
-  flex: 1;
-  padding: 1px;
-
-}
-.search-bar::placeholder {
-  color: #666;
-}
-
-.search-bar:hover {
-  width: 300px;
-  border-color: #555;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-
-.search-bar:focus {
-  width: 300px;
-  border-color: #007BFF;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
-}
-
-.fas.fa-user-circle {
-  font-size: 1.5rem;
-  color: rgb(67, 67, 67)
-}
-
-.fas.fa-user-circle:hover {
-  font-size: 1.5rem;
-  color: rgb(233, 233, 233)
-}
-
-.view-logout-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 100px;
-}
-
-/* Button styling */
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #b5a240;
-  color: #FFF;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s;
-
-}
-
-button:hover {
-  background-color: #1e1e1e;
+.logout-red-button:hover {
+  background: var(--danger, #ef4444);
+  color: #fff;
 }
