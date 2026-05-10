@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, history } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getCart, addItemToCart, updateCartItem, deleteItemFromCart, submitCartThunk } from '../../store/cart';
 import { getAllDishes } from '../../store/dish';
-import './CartContainer.css';
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -79,7 +78,7 @@ const Cart = () => {
                                             <div className="cart-item-price">${dishDetails?.price.toFixed(2)}</div>
                                             <div className="cart-item-quantity">
                                             <button onClick={() => handleUpdateQuantity(item.item_id, -1)}>-</button>
-                                            <span>{item.quantity}</span>
+<                                           span>{item.quantity}</span>
                                             <button onClick={() => handleUpdateQuantity(item.item_id, 1)}>+</button>
                                             </div>
                                             <button className="cart-item-remove" onClick={() => handleRemoveItem(item.item_id)}>Remove</button>

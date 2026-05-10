@@ -1,94 +1,91 @@
-/* ============================================================
-   CREATE / UPDATE BUSINESS FORM
-   ============================================================ */
 
-.business-form-container {
-  max-width: 720px;
-  margin: var(--sp-7, 48px) auto;
-  padding: var(--sp-6, 32px);
-  background: var(--surface, #1a1a1a);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-xl, 16px);
-  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,.55));
+
+
+/* Label styling */
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+/*
+Input fields styling  */
+ input[type="text"], input[type="email"], textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
 }
 
-.business-form-heading {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--accent, #E6B567);
-  margin-bottom: var(--sp-6, 32px);
-  padding-bottom: var(--sp-4, 16px);
-  border-bottom: 1px solid var(--border, #333);
-  letter-spacing: -0.02em;
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
 }
 
-/* Scoped form elements */
-.business-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2, 8px);
-}
 
+
+
+
+/* Scoped form styles */
 .business-form label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2, 8px);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-2, #a0a0a0);
-  margin-bottom: var(--sp-3, 12px);
+    display: flex;
+    margin-bottom: 10px;
+    font-weight: bold;
+    flex-direction: column;
 }
 
+/* Scoped input fields styling */
 .business-form input[type="text"],
 .business-form input[type="email"],
 .business-form textarea {
-  background: var(--surface-2, #242424);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-md, 8px);
-  color: var(--text, #f0f0f0);
-  padding: var(--sp-3, 12px) var(--sp-4, 16px);
-  font-family: var(--font, system-ui);
-  font-size: 0.95rem;
-  width: 100%;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
 }
 
-.business-form input:focus,
+.business-form input[type="text"]:focus,
+.business-form input[type="email"]:focus,
 .business-form textarea:focus {
-  outline: none;
-  border-color: var(--accent, #E6B567);
-  box-shadow: 0 0 0 3px var(--accent-dim, rgba(230,181,103,0.15));
+    border-color: #007BFF;
+    outline: none;
 }
 
-.business-form textarea {
-  min-height: 110px;
-  resize: vertical;
+
+.business-form button:hover {
+    background-color: #0056b3;
 }
 
-.business-form button[type="submit"] {
-  margin-top: var(--sp-4, 16px);
-  width: 100%;
-  padding: var(--sp-4, 16px);
-  background: var(--accent, #E6B567);
-  color: #111;
-  border: none;
-  border-radius: var(--r-md, 8px);
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 150ms ease, box-shadow 150ms ease;
-}
-
-.business-form button[type="submit"]:hover {
-  background: var(--accent-hover, #f0c070);
-  box-shadow: 0 4px 20px rgba(230,181,103,0.25);
-}
-
+/* Scoped error message styling */ */
 .business-form .error {
-  color: var(--danger, #ef4444);
-  font-size: 0.8rem;
-  padding: var(--sp-1, 4px) var(--sp-2, 8px);
-  background: var(--danger-dim, rgba(239,68,68,0.12));
-  border-radius: var(--r-sm, 4px);
-  margin-top: 2px;
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+
+.business-form-container {
+    max-width: 800px;
+    max-height: 1500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #1a1919;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(246, 245, 245);
+    flex-direction: column;
+}
+
+.business-form .button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
 }

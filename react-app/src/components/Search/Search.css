@@ -1,57 +1,61 @@
+/* Search.css */
+
 .main-search-section {
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .search-info {
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .main-search-form {
-  display: flex;
-  align-items: center;
-  background: var(--surface-2, #242424);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-full, 9999px);
-  padding: 4px 4px 4px var(--sp-4, 16px);
-  transition: border-color var(--t-fast, 150ms ease), box-shadow var(--t-fast, 150ms ease);
-}
-
-.main-search-form:focus-within {
-  border-color: var(--accent, #E6B567);
-  box-shadow: 0 0 0 3px var(--accent-dim, rgba(230,181,103,0.15));
+    display: flex;
+    width: 80%; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 8px;
 }
 
 .main-search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text, #f0f0f0);
-  font-family: var(--font, system-ui);
-  font-size: 0.9rem;
-  padding: var(--sp-2, 8px) 0;
-}
-
-.main-search-input::placeholder {
-  color: var(--text-muted, #666);
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .search-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--r-full, 9999px);
-  background: var(--accent, #E6B567);
-  color: #111;
-  border: none;
-  font-size: 0.85rem;
-  padding: 0;
-  flex-shrink: 0;
-  transition: background var(--t-fast, 150ms ease);
+    background-color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.search-button:hover {
-  background: var(--accent-hover, #f0c070);
+.dish-listings {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dish-item {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.dish-item img {
+    max-width: 150px;
+    margin-right: 20px;
+    border-radius: 4px;
 }

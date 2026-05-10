@@ -10,6 +10,7 @@ import EditReviewModal from '../UpdateReviewModal';
 import DeleteReviewModal from '../DeleteReviewModal';
 import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
+import addToCart from '../CartComponent';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import LoadingAnimation from '../Loading';
 

@@ -1,98 +1,90 @@
-/* ============================================================
-   UPDATE REVIEW MODAL
-   ============================================================ */
 
 #editReviewContainer {
-  width: 400px;
-  max-width: 92vw;
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .editReviewHeading {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text, #f0f0f0);
-  margin-bottom: var(--sp-4, 16px);
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .comment-input {
-  width: 100%;
-  padding: var(--sp-3, 12px) var(--sp-4, 16px);
-  background: var(--surface-2, #242424);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-md, 8px);
-  color: var(--text, #f0f0f0);
-  font-family: var(--font, system-ui);
-  font-size: 0.95rem;
-  resize: vertical;
-  min-height: 100px;
-  margin-bottom: var(--sp-3, 12px);
-  transition: border-color 150ms ease, box-shadow 150ms ease;
-}
-
-.comment-input:focus {
-  outline: none;
-  border-color: var(--accent, #E6B567);
-  box-shadow: 0 0 0 3px var(--accent-dim, rgba(230,181,103,0.15));
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 .post-review-errors {
-  color: var(--danger, #ef4444);
-  font-size: 0.8rem;
-  padding: var(--sp-2, 8px) var(--sp-3, 12px);
-  background: var(--danger-dim, rgba(239,68,68,0.12));
-  border-radius: var(--r-sm, 4px);
-  margin: var(--sp-1, 4px) 0;
+    color: red;
+    margin: 5px 0;
 }
 
-.empty-space { height: 16px; display: block; }
+.empty-space {
+    height: 20px;
+    display: block;
+}
 
 .rating-input {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2, 8px);
-  margin-bottom: var(--sp-4, 16px);
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-/* Star rating */
-.filled i, .empty i {
-  font-size: 1.6rem;
-  cursor: pointer;
-  margin-right: var(--sp-1, 4px);
-  transition: color 150ms ease, transform 150ms ease;
+.rating-input > div {
+    margin-left: 5px;
 }
 
-.filled i { color: var(--warning, #f59e0b); }
-.empty i  { color: var(--border, #333); }
+.submit-button-inactive,
+.submit-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
 
-.filled:hover i { transform: scale(1.15); color: var(--warning, #f59e0b); }
-.empty:hover i  { color: var(--accent, #E6B567); }
-
-/* Buttons */
-.submit-button,
 .submit-button-inactive {
-  width: 100%;
-  padding: var(--sp-3, 12px) var(--sp-4, 16px);
-  border: none;
-  border-radius: var(--r-md, 8px);
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 150ms ease, box-shadow 150ms ease;
-  margin-top: var(--sp-2, 8px);
+    background-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
 }
 
 .submit-button {
-  background: var(--accent, #E6B567);
-  color: #111;
+    background-color: #b5a240;
+    color: #fff;
 }
 
 .submit-button:hover {
-  background: var(--accent-hover, #f0c070);
-  box-shadow: 0 4px 20px rgba(230,181,103,0.25);
+    background-color: #b5a240;
 }
 
-.submit-button-inactive {
-  background: var(--surface-3, #2e2e2e);
-  color: var(--text-muted, #666);
-  cursor: not-allowed;
+/* StarsRating styling */
+
+ .filled i,
+.empty i {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: color 0.2s;
+}
+
+.filled i {
+    color: #FFD700;
+}
+
+.empty i {
+    color: #ccc;
+}
+
+.filled:hover i,
+.filled:hover ~ .empty i {
+    color: #FFD700;
 }
