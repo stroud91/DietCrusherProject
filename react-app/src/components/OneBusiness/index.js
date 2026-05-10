@@ -13,7 +13,6 @@ import DeleteDishModal from "../DeleteDishModal";
 import "./OneBusiness.css";
 import plusImage from '../../images/plusimage.jpg'
 import { useModal } from "../../context/Modal";
-import addToCart from '../CartComponent';
 import LoadingAnimation from "../Loading";
 
 function BusinessDetails() {
@@ -30,7 +29,7 @@ function BusinessDetails() {
     const selectedBusiness = useSelector((state) => state.business.selectedBusiness);
     const dishes = useSelector((state) => state.dish.dishesForBusiness);
     const currentUser = useSelector((state) => state.session.user);
-    const reviews = useSelector((state) => state.review.allReviews);
+    const reviews = useSelector((state) => state.review.singleBusinessReviews);
     const user = currentUser;
 
 
@@ -102,7 +101,7 @@ function BusinessDetails() {
 
             <div className="dishes-container">
                 {dishes.map(dish => (
-                    <div className="dish" onClick={() => setSelectedDish(dish.id)}>
+                    <div className="dish" key={dish.id} onClick={() => setSelectedDish(dish.id)}>
                         <div className="dish-photo-container">
                             <img src={dish.image_id} alt={dish.name} className="dish-image" />
                         </div>
@@ -125,7 +124,7 @@ function BusinessDetails() {
                 ))}
                 {user && selectedBusiness.owner_id === user.id && (
                     <div className="add-new-dish" onClick={showAddDishFormFunction}>
-                    <div className="add-dish-plus- container">
+                    <div className="add-dish-plus-container">
                             <img src={plusImage} alt=""className="plus-image" />
                         </div>
                  <p>Add a new dish</p>
