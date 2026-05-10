@@ -1,497 +1,365 @@
-/* ============================================================
-   ONE BUSINESS PAGE
-   ============================================================ */
+
 
 .business-info-container {
-  max-width: var(--max-w, 1280px);
-  margin: 0 auto;
-  padding: var(--sp-6, 32px) var(--sp-6, 32px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--font, system-ui);
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
 
-/* Business header card */
-.business-logo {
-  margin-bottom: var(--sp-4, 16px);
 }
 
 .business-logo img {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--accent, #E6B567);
-  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,.55));
-  transition: transform var(--t, 220ms ease);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .business-logo img:hover {
-  transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .business-name {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text, #f0f0f0);
-  margin: var(--sp-2, 8px) 0 var(--sp-1, 4px);
-  text-align: center;
-  letter-spacing: -0.02em;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
 }
 
 .business-details {
-  background: var(--surface, #1a1a1a);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-lg, 12px);
-  padding: var(--sp-5, 24px) var(--sp-6, 32px);
-  margin: var(--sp-4, 16px) 0 var(--sp-6, 32px);
-  width: 100%;
-  max-width: 600px;
-  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,.5));
-  transition: box-shadow var(--t, 220ms ease);
+    width: 60%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    background-color: rgb(39, 39, 39);
 }
 
 .business-details:hover {
-  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,.55));
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.business-details p {
-  color: var(--text-2, #a0a0a0);
-  font-size: 0.875rem;
-  margin: var(--sp-2, 8px) 0;
-  line-height: 1.6;
+.business-actions, .dish-owner-actions, .dish-user-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-/* Section heading for dishes */
-.business-info-container h3 {
-  font-size: 1.3rem;
-  color: var(--text, #f0f0f0);
-  width: 100%;
-  padding-left: var(--sp-4, 16px);
-  border-left: 3px solid var(--accent, #E6B567);
-  margin-bottom: var(--sp-5, 24px);
+button.edit-button, button.delete-button, button.edit-btn, button.delete-btn, button.add-cart-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Dishes grid */
+button.edit-button:hover, button.edit-btn:hover {
+    background-color: #000000;
+}
+
+button.delete-button:hover, button.delete-btn:hover {
+    background-color: #f44336;
+    color: #fff;
+}
+
+button.add-cart-btn:hover {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
 .dishes-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--sp-5, 24px);
-  width: 100%;
-  margin-top: var(--sp-2, 8px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+
+
 }
 
-/* Individual dish card */
 .dish {
-  background: var(--surface, #1a1a1a);
-  border: 1px solid var(--border, #333);
-  border-radius: var(--r-lg, 12px);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform var(--t, 220ms ease), box-shadow var(--t, 220ms ease), border-color var(--t, 220ms ease);
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    background-color: rgb(39, 39, 39);
+    width: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dish:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,.65));
-  border-color: var(--accent, #E6B567);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dish-photo-container {
-  height: 160px;
-  overflow: hidden;
-  background: var(--surface-2, #242424);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    overflow: hidden;
+    max-width: 250px;
 }
 
 .dish-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--t-slow, 380ms ease);
+    width: 100%;
+    transition: transform 0.3s ease;
 }
 
-.dish:hover .dish-image {
-  transform: scale(1.08);
+.dish-photo-container:hover .dish-image {
+    transform: scale(1.1);
 }
 
 .dish-info {
-  padding: var(--sp-3, 12px) var(--sp-4, 16px);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-1, 4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
+
 
 .dish-info h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text, #f0f0f0);
-  margin: 0;
+    margin: 8px 0;
 }
 
-.dish-info h4:last-of-type {
-  color: var(--accent, #E6B567);
-  font-weight: 700;
-}
-
-/* Owner edit/delete actions */
-.dish-owner-actions {
-  display: flex;
-  gap: var(--sp-2, 8px);
-  padding: 0 var(--sp-4, 16px) var(--sp-3, 12px);
-  justify-content: center;
-}
-
-.edit-btn {
-  background: var(--accent-dim, rgba(230,181,103,0.15));
-  color: var(--accent, #E6B567);
-  border: 1px solid var(--accent-dark, #c49a3c);
-  padding: var(--sp-1, 4px) var(--sp-3, 12px);
-  border-radius: var(--r-sm, 4px);
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: background var(--t-fast), color var(--t-fast);
-}
-
-.edit-btn:hover {
-  background: var(--accent, #E6B567);
-  color: #111;
-}
-
-.delete-btn {
-  background: var(--danger-dim, rgba(239,68,68,0.12));
-  color: var(--danger, #ef4444);
-  border: 1px solid var(--danger, #ef4444);
-  padding: var(--sp-1, 4px) var(--sp-3, 12px);
-  border-radius: var(--r-sm, 4px);
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: background var(--t-fast), color var(--t-fast);
-}
-
-.delete-btn:hover {
-  background: var(--danger, #ef4444);
-  color: #fff;
-}
-
-/* Add to cart button */
-.dish-user-actions {
-  padding: 0 0 0;
-  margin-top: auto;
-}
-
-.add-to-cart-btn {
-  width: 100%;
-  padding: var(--sp-3, 12px);
-  background: var(--accent, #E6B567);
-  color: #111;
-  border: none;
-  border-radius: 0 0 var(--r-lg, 12px) var(--r-lg, 12px);
-  font-size: 0.875rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background var(--t-fast), box-shadow var(--t-fast);
-  align-self: stretch;
-}
-
-.add-to-cart-btn:hover {
-  background: var(--accent-hover, #f0c070);
-  box-shadow: var(--shadow-gold, 0 4px 20px rgba(230,181,103,0.25));
-}
-
-/* "Add a new dish" card */
 .add-new-dish {
-  background: var(--surface, #1a1a1a);
-  border: 2px dashed var(--border, #333);
-  border-radius: var(--r-lg, 12px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  gap: var(--sp-3, 12px);
-  cursor: pointer;
-  color: var(--text-2, #a0a0a0);
-  font-size: 0.875rem;
-  transition: border-color var(--t), background var(--t), color var(--t);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    width: 200px;
+    height: 250px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: rgb(39, 39, 39);
 }
 
 .add-new-dish:hover {
-  border-color: var(--accent, #E6B567);
-  background: var(--accent-dim, rgba(230,181,103,0.15));
-  color: var(--accent, #E6B567);
-}
-
-.add-new-dish p {
-  margin: 0;
-  font-weight: 600;
+    background-color: #f7f7f7;
 }
 
 .add-dish-plus-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--accent-dim, rgba(230,181,103,0.15));
-  border: 2px solid var(--accent-dark, #c49a3c);
-  transition: background var(--t-fast);
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1500px;
+    width: 150x;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
 }
 
-.add-new-dish:hover .add-dish-plus-container {
-  background: var(--accent-dim, rgba(230,181,103,0.25));
+.add-dish-plus-container:hover {
+    background-color: #d0d0d0;
 }
 
 .plus-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+    width: 100%;
+    transition: transform 0.3s ease;
 }
 
-/* Business owner top actions */
-.business-actions {
-  display: flex;
-  gap: var(--sp-3, 12px);
-  margin: var(--sp-4, 16px) 0;
+.dishDetail-userActions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
 }
 
-/* Modal confirm/cancel */
-.modal-buttons {
-  display: flex;
-  justify-content: space-around;
-  gap: var(--sp-4, 16px);
-  margin-top: var(--sp-5, 24px);
+.dish-owner-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* ============================================================
-   DISH DETAIL STYLES (used in OneDish page)
-   ============================================================ */
+.dish-user-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
 
+/* Add styles for the new add-to-cart button */
+.add-to-cart-btn {
+    align-self: center;
+    padding: 10px 20px;
+    margin-top: auto;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #b5a240;
+    color: white;
+    border-radius: 5px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: black;
+}
+
+
+
+/* dish info style css*/
+
+/* Main container for the dish details */
 .dishDetail-container {
-  max-width: 860px;
-  margin: var(--sp-7, 48px) auto;
-  padding: 0 var(--sp-5, 24px) var(--sp-7, 48px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 30px auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
+/* Styling for the image of the dish */
 .dishDetail-image {
-  width: 100%;
-  max-height: 440px;
-  object-fit: cover;
-  border-radius: var(--r-xl, 16px);
-  margin-bottom: var(--sp-5, 24px);
-  box-shadow: var(--shadow-lg, 0 10px 30px rgba(0,0,0,.65));
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 1rem;
 }
 
+/* Styling for the name of the dish */
 .dishDetail-name {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text, #f0f0f0);
-  margin-bottom: var(--sp-2, 8px);
-  letter-spacing: -0.02em;
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0.5rem 0;
 }
 
+/* Description of the dish */
 .dishDetail-description {
-  color: var(--text-2, #a0a0a0);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: var(--sp-4, 16px);
-  max-width: 640px;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
 }
 
+/* Price of the dish */
 .dishDetail-price {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--accent, #E6B567);
-  margin-bottom: var(--sp-5, 24px);
-  display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
 }
 
+/* Container for edit and delete buttons */
 .dishDetail-buttons {
-  display: flex;
-  gap: var(--sp-3, 12px);
-  margin-bottom: var(--sp-5, 24px);
-  flex-wrap: wrap;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Button styling */
+.dishDetail-delete-button, .dishDetail-edit-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
 }
 
 .dishDetail-edit-button {
-  background: var(--accent-dim, rgba(230,181,103,0.15));
-  color: var(--accent, #E6B567);
-  border: 1px solid var(--accent-dark, #c49a3c);
-  padding: var(--sp-2, 8px) var(--sp-4, 16px);
-  border-radius: var(--r-md, 8px);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background var(--t-fast), color var(--t-fast);
-  text-decoration: none;
-  font-size: 0.875rem;
-}
-
-.dishDetail-edit-button:hover {
-  background: var(--accent, #E6B567);
-  color: #111;
+    background-color: #007BFF;
+    color: #fff;
 }
 
 .dishDetail-delete-button {
-  background: var(--danger-dim, rgba(239,68,68,0.12));
-  color: var(--danger, #ef4444);
-  border: 1px solid var(--danger, #ef4444);
-  padding: var(--sp-2, 8px) var(--sp-4, 16px);
-  border-radius: var(--r-md, 8px);
-  font-weight: 600;
-  cursor: pointer;
-  transition: background var(--t-fast), color var(--t-fast);
-  font-size: 0.875rem;
+    background-color: #FF4136;
+    color: #fff;
 }
 
+.dishDetail-edit-button:hover,
 .dishDetail-delete-button:hover {
-  background: var(--danger, #ef4444);
-  color: #fff;
+    opacity: 0.9;
 }
 
-/* Reviews section */
+/* Reviews section styling */
 .dishDetail-reviews {
-  width: 100%;
-  margin-top: var(--sp-7, 48px);
-  border-top: 1px solid var(--border, #333);
-  padding-top: var(--sp-5, 24px);
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .dishDetail-reviewsTitle {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text, #f0f0f0);
-  margin-bottom: var(--sp-5, 24px);
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
+/* Individual review item */
 .dishDetail-reviewItem {
-  display: flex;
-  gap: var(--sp-4, 16px);
-  padding: var(--sp-4, 16px) 0;
-  border-bottom: 1px solid var(--border-subtle, #222);
-  align-items: flex-start;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
-.dishDetail-reviewUserPhoto {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 2px solid var(--border, #333);
-}
-
-.dishDetail-reviewContent {
-  flex: 1;
-}
-
-.dishDetail-reviewUserDetails {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-1, 4px);
-  margin-bottom: var(--sp-2, 8px);
-}
-
+/* Reviewer's name */
 .dishDetail-reviewUserName {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text, #f0f0f0);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 0.5rem;
 }
 
-.dishDetail-reviewTime {
-  font-size: 0.75rem;
-  color: var(--text-muted, #666);
-}
-
+/* Review comment */
 .dishDetail-reviewComment {
-  color: var(--text-2, #a0a0a0);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: var(--sp-3, 12px);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
+/* Review rating */
 .dishDetail-reviewRating {
-  display: flex;
-  gap: 2px;
-  margin-bottom: var(--sp-2, 8px);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFD700;
 }
 
-.dishDetail-reviewRating .on i {
-  color: var(--warning, #f59e0b);
-}
-
-.dishDetail-reviewRating .off i {
-  color: var(--border, #333);
-}
-
-.fa-star {
-  font-size: 0.85rem;
-}
-
+/* Review action buttons */
 .dishDetail-reviewButtons {
-  display: flex;
-  gap: var(--sp-2, 8px);
+    display: flex;
+    gap: 0.5rem;
+}
+
+#dishDetail-reviewEdit-button,
+#dishDetail-reviewDelete-button {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #dishDetail-reviewEdit-button {
-  background: var(--accent-dim, rgba(230,181,103,0.15));
-  color: var(--accent, #E6B567);
-  border: 1px solid var(--accent-dark, #c49a3c);
-  padding: var(--sp-1, 4px) var(--sp-3, 12px);
-  border-radius: var(--r-sm, 4px);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-#dishDetail-reviewEdit-button:hover {
-  background: var(--accent, #E6B567);
-  color: #111;
+    background-color: #007BFF;
+    color: #fff;
 }
 
 #dishDetail-reviewDelete-button {
-  background: var(--danger-dim, rgba(239,68,68,0.12));
-  color: var(--danger, #ef4444);
-  border: 1px solid var(--danger, #ef4444);
-  padding: var(--sp-1, 4px) var(--sp-3, 12px);
-  border-radius: var(--r-sm, 4px);
-  font-size: 0.8rem;
-  font-weight: 600;
+    background-color: #FF4136;
+    color: #fff;
 }
 
-#dishDetail-reviewDelete-button:hover {
-  background: var(--danger, #ef4444);
-  color: #fff;
+
+.modal-container {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+
 }
 
-/* Action buttons on dish detail page */
-.dishDetail-userActions {
-  display: flex;
-  gap: var(--sp-3, 12px);
-  margin-bottom: var(--sp-5, 24px);
-  flex-wrap: wrap;
-}
 
-#dishDetail-postReview-button {
-  background: var(--surface-2, #242424);
-  color: var(--text, #f0f0f0);
-  border: 1px solid var(--border, #333);
-  padding: var(--sp-3, 12px) var(--sp-5, 24px);
-  border-radius: var(--r-md, 8px);
-  font-weight: 600;
-  font-size: 0.875rem;
-  transition: background var(--t-fast), border-color var(--t-fast);
-}
 
-#dishDetail-postReview-button:hover {
-  background: var(--surface-3, #2e2e2e);
-  border-color: var(--accent, #E6B567);
-  color: var(--accent, #E6B567);
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
 }
