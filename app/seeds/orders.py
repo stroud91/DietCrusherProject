@@ -9,7 +9,7 @@ def seed_orders():
         total_price=25.99,
         order_date=datetime.utcnow(),
         delivery_address="123 Main St, Sample City",
-        status="Shipped",
+        status="On the way",
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -19,7 +19,7 @@ def seed_orders():
         total_price=15.49,
         order_date=datetime.utcnow(),
         delivery_address="456 Elm St, Sample City",
-        status="Processing",
+        status="Preparing",
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -49,7 +49,7 @@ def seed_orders():
     total_price=60.50,
     order_date=datetime.utcnow(),
     delivery_address="11 Oak St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -59,7 +59,7 @@ def seed_orders():
     total_price=40.40,
     order_date=datetime.utcnow(),
     delivery_address="12 Birch St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -79,7 +79,7 @@ def seed_orders():
     total_price=30.30,
     order_date=datetime.utcnow(),
     delivery_address="14 Pine St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -89,7 +89,7 @@ def seed_orders():
     total_price=50.50,
     order_date=datetime.utcnow(),
     delivery_address="15 Elm St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -109,7 +109,7 @@ def seed_orders():
     total_price=80.80,
     order_date=datetime.utcnow(),
     delivery_address="17 Oak St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -119,7 +119,7 @@ def seed_orders():
     total_price=90.90,
     order_date=datetime.utcnow(),
     delivery_address="18 Birch St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -129,7 +129,7 @@ def seed_orders():
     total_price=65.65,
     order_date=datetime.utcnow(),
     delivery_address="19 Cedar St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -149,7 +149,7 @@ def seed_orders():
     total_price=85.85,
     order_date=datetime.utcnow(),
     delivery_address="21 Ash St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -159,7 +159,7 @@ def seed_orders():
     total_price=95.95,
     order_date=datetime.utcnow(),
     delivery_address="22 Beech St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -179,7 +179,7 @@ def seed_orders():
     total_price=45.45,
     order_date=datetime.utcnow(),
     delivery_address="24 Dogwood St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -189,7 +189,7 @@ def seed_orders():
     total_price=35.35,
     order_date=datetime.utcnow(),
     delivery_address="25 Elder St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -209,7 +209,7 @@ def seed_orders():
     total_price=15.15,
     order_date=datetime.utcnow(),
     delivery_address="27 Gum St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -219,7 +219,7 @@ def seed_orders():
     total_price=5.05,
     order_date=datetime.utcnow(),
     delivery_address="28 Hickory St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -229,7 +229,7 @@ def seed_orders():
     total_price=10.10,
     order_date=datetime.utcnow(),
     delivery_address="29 Ironwood St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -248,7 +248,7 @@ def seed_orders():
     total_price=65.65,
     order_date=datetime.utcnow(),
     delivery_address="31 Kite St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -258,7 +258,7 @@ def seed_orders():
     total_price=75.75,
     order_date=datetime.utcnow(),
     delivery_address="32 Lemon St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -278,7 +278,7 @@ def seed_orders():
     total_price=50.50,
     order_date=datetime.utcnow(),
     delivery_address="34 Nutmeg St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -288,7 +288,7 @@ def seed_orders():
     total_price=60.60,
     order_date=datetime.utcnow(),
     delivery_address="35 Olive St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -308,7 +308,7 @@ def seed_orders():
     total_price=40.40,
     order_date=datetime.utcnow(),
     delivery_address="37 Quince St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -318,7 +318,7 @@ def seed_orders():
     total_price=20.20,
     order_date=datetime.utcnow(),
     delivery_address="38 Raspberry St, Sample City",
-    status="Shipped",
+    status="On the way",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -328,7 +328,7 @@ def seed_orders():
     total_price=10.10,
     order_date=datetime.utcnow(),
     delivery_address="39 Strawberry St, Sample City",
-    status="Processing",
+    status="Preparing",
     created_at=datetime.utcnow(),
     updated_at=datetime.utcnow()
 )
@@ -352,7 +352,7 @@ def seed_orders():
 
 def undo_orders():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.orders RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.orders RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute(text("DELETE FROM orders"))
 

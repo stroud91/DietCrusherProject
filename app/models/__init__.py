@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA
 from .user import User
 from .business import Business
 from .categories import Category
@@ -8,4 +8,4 @@ from .order_details import OrderDetail
 from .reviews import Review
 from .cart import Cart
 from .cartitem import CartItem
-from .db import environment, SCHEMA
+from .favorites import Favorite

@@ -149,7 +149,7 @@ def seed_order_details():
 
 def undo_order_details():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.orderdetails RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.orderdetails RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute(text("DELETE FROM orderdetails"))
     db.session.commit()

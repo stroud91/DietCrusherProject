@@ -712,7 +712,7 @@ def seed_dishes():
 
 def undo_dishes():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.dishes RESTART IDENTITY CASCADE;")
+        db.session.execute(text(f"TRUNCATE table {SCHEMA}.dishes RESTART IDENTITY CASCADE;"))
     else:
         db.session.execute(text("DELETE FROM dishes"))
 

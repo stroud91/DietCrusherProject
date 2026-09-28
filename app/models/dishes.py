@@ -1,10 +1,9 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, schema_args, add_prefix_for_prod, utcnow, iso
+
 
 class Dish(db.Model):
     __tablename__ = 'dishes'
-
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+    __table_args__ = schema_args()
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('business.id')))
@@ -13,28 +12,32 @@ class Dish(db.Model):
     image_id = db.Column(db.String(length=1000), nullable=False)
     price = db.Column(db.Float, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('categories.id')))
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
-
-
+    calories = db.Column(db.Integer, nullable=True)
+    is_available = db.Column(db.Boolean, nullable=False, default=True, server_default=db.true())
+    created_at = db.Column(db.DateTime, nullable=False, default=utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=utcnow, onupdate=utcnow)
 
     business = db.relationship("Business", back_populates="dishes")
     category = db.relationship("Category", back_populates="dishes")
-    item = db.relationship('CartItem', back_populates='dish')
-    order_details = db.relationship("OrderDetail", back_populates="dish", lazy=True, cascade="all, delete-orphan")
-    reviews = db.relationship("Review", back_populates="dish", lazy=True)
+    item = db.relationship('CartItem', back_populates='dish', cascade="all, delete-orphan")
+    order_details = db.relationship("OrderDetail", back_populates="dish", lazy=True)
+    reviews = db.relationship("Review", back_populates="dish", lazy=True, cascade="all, delete-orphan")
 
-    def to_dict(self):
+    def to_dict(self, rating=None, review_count=0):
         return {
             'id': self.id,
             'business_id': self.business_id,
-            'business_name': self.business.name,
+            'business_name': self.business.name if self.business else None,
             'name': self.name,
             'description': self.description,
             'image_id': self.image_id,
-            'price': self.price,
+            'price': round(self.price, 2),
             'category_id': self.category_id,
-            'category_name': self.category.name,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'category_name': self.category.name if self.category else None,
+            'calories': self.calories,
+            'is_available': self.is_available if self.is_available is not None else True,
+            'rating': round(float(rating), 1) if rating is not None else None,
+            'review_count': review_count or 0,
+            'created_at': iso(self.created_at),
+            'updated_at': iso(self.updated_at),
         }

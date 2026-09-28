@@ -1,106 +1,60 @@
-// constants
-const SET_USER = "session/SET_USER";
-const REMOVE_USER = "session/REMOVE_USER";
+import { api } from '../utils/api';
+import { loadCart, resetCart } from './cart';
+import { loadFavorites, resetFavorites } from './favorites';
 
-const setUser = (user) => ({
-	type: SET_USER,
-	payload: user,
-});
+const SET_USER = 'session/SET_USER';
 
-const removeUser = () => ({
-	type: REMOVE_USER,
-});
+export const setUser = (user) => ({ type: SET_USER, user });
 
-const initialState = { user: null };
+async function afterLogin(dispatch, user) {
+  dispatch(setUser(user));
+  if (user) {
+    dispatch(loadCart());
+    dispatch(loadFavorites());
+  } else {
+    dispatch(resetCart());
+    dispatch(resetFavorites());
+  }
+  return user;
+}
 
 export const authenticate = () => async (dispatch) => {
-	const response = await fetch("/api/auth/", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-	if (response.ok) {
-		const data = await response.json();
-		if (data.errors) {
-			return;
-		}
-
-		dispatch(setUser(data));
-	}
+  try {
+    const { user } = await api('/auth/');
+    return afterLogin(dispatch, user);
+  } catch (e) {
+    return afterLogin(dispatch, null);
+  }
 };
 
 export const login = (email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/login", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			email,
-			password,
-		}),
-	});
+  const { user } = await api('/auth/login', { method: 'POST', body: { email, password } });
+  return afterLogin(dispatch, user);
+};
 
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(setUser(data));
-		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
+export const demoLogin = () => login('alice@wonderland.ioo', 'passwordAlice');
+
+export const signUp = (payload) => async (dispatch) => {
+  const { user } = await api('/auth/signup', { method: 'POST', body: payload });
+  return afterLogin(dispatch, user);
+};
+
+export const updateProfile = (payload) => async (dispatch) => {
+  const { user } = await api('/auth/profile', { method: 'PATCH', body: payload });
+  dispatch(setUser(user));
+  return user;
 };
 
 export const logout = () => async (dispatch) => {
-	const response = await fetch("/api/auth/logout", {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
-
-	if (response.ok) {
-		dispatch(removeUser());
-	}
+  await api('/auth/logout', { method: 'POST' });
+  return afterLogin(dispatch, null);
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/signup", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
-	});
-
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(setUser(data));
-		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
-};
-
-export default function reducer(state = initialState, action) {
-	switch (action.type) {
-		case SET_USER:
-			return { user: action.payload };
-		case REMOVE_USER:
-			return { user: null };
-		default:
-			return state;
-	}
+export default function sessionReducer(state = { user: null }, action) {
+  switch (action.type) {
+    case SET_USER:
+      return { user: action.user };
+    default:
+      return state;
+  }
 }

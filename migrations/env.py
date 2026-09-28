@@ -5,6 +5,7 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from sqlalchemy import text
 
 from alembic import context
 
@@ -29,7 +30,8 @@ logger = logging.getLogger('alembic.env')
 from flask import current_app
 config.set_main_option(
     'sqlalchemy.url',
-    str(current_app.extensions['migrate'].db.engine.url).replace('%', '%%'))
+    current_app.extensions['migrate'].db.engine.url.render_as_string(
+        hide_password=False).replace('%', '%%'))
 target_metadata = current_app.extensions['migrate'].db.metadata
 
 # other values from the config, defined by the needs of env.py,
@@ -92,12 +94,13 @@ def run_migrations_online():
         )
         # Create a schema (only in production)
         if environment == "production":
-            connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
+            connection.execute(text(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}"))
+            connection.commit()
 
         # Set search path to your schema (only in production)
         with context.begin_transaction():
             if environment == "production":
-                context.execute(f"SET search_path TO {SCHEMA}")
+                context.execute(text(f"SET search_path TO {SCHEMA}"))
             context.run_migrations()
 
 if context.is_offline_mode():

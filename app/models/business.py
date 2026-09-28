@@ -1,11 +1,9 @@
+from .db import db, schema_args, add_prefix_for_prod, utcnow, iso
 
-from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Business(db.Model):
     __tablename__ = 'business'
-
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+    __table_args__ = schema_args()
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
@@ -20,15 +18,20 @@ class Business(db.Model):
     email = db.Column(db.String, nullable=True, unique=True)
     logo_id = db.Column(db.String(length=1000), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    created_at = db.Column(db.DateTime, nullable=False)
-    updated_at = db.Column(db.DateTime, nullable=False)
+    delivery_fee = db.Column(db.Float, nullable=False, default=2.99, server_default='2.99')
+    prep_time = db.Column(db.Integer, nullable=False, default=25, server_default='25')
+    created_at = db.Column(db.DateTime, nullable=False, default=utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=utcnow, onupdate=utcnow)
 
     owner = db.relationship("User", back_populates="businesses_owned")
     dishes = db.relationship("Dish", back_populates="business", lazy=True)
+    favorites = db.relationship("Favorite", back_populates="business", lazy=True, cascade="all, delete-orphan")
 
+    @property
+    def cuisines(self):
+        return [c.strip() for c in (self.type or '').split(',') if c.strip()]
 
-
-    def to_dict(self):
+    def to_dict(self, rating=None, review_count=0):
         return {
             'id': self.id,
             'name': self.name,
@@ -40,9 +43,14 @@ class Business(db.Model):
             'phone': self.phone_number,
             'about': self.about,
             'type': self.type,
+            'cuisines': self.cuisines,
             'email': self.email,
             'logo_id': self.logo_id,
             'owner_id': self.owner_id,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'delivery_fee': round(self.delivery_fee if self.delivery_fee is not None else 2.99, 2),
+            'prep_time': self.prep_time or 25,
+            'rating': round(float(rating), 1) if rating is not None else None,
+            'review_count': review_count or 0,
+            'created_at': iso(self.created_at),
+            'updated_at': iso(self.updated_at),
         }
