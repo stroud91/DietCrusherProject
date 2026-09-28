@@ -1,87 +1,91 @@
-from flask import Blueprint, jsonify, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
+from flask import Blueprint
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import func
+from ..extensions import limiter
+from ..forms import LoginForm, SignUpForm, ProfileForm, PasswordForm
+from ..models import User, db
+from .utils import form_errors, error
 
 auth_routes = Blueprint('auth', __name__)
 
-
-def validation_errors_to_error_messages(validation_errors):
-    """
-    Simple function that turns the WTForms validation errors into a simple list
-    """
-    errorMessages = []
-    for field in validation_errors:
-        for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
-    return errorMessages
+INVALID_LOGIN = 'Invalid email or password.'
 
 
 @auth_routes.route('/')
 def authenticate():
-    """
-    Authenticates a user.
-    """
+    """Returns the logged-in user, or null."""
     if current_user.is_authenticated:
-        return current_user.to_dict()
-    return {'errors': ['Unauthorized']}
+        return {'user': current_user.to_dict()}
+    return {'user': None}
 
 
 @auth_routes.route('/login', methods=['POST'])
+@limiter.limit("10 per minute; 50 per hour")
 def login():
-    """
-    Logs a user in
-    """
+    """Logs a user in. Uses a single generic error to avoid account enumeration."""
     form = LoginForm()
-    # Get the csrf_token from the request cookie and put it into the
-    # form manually to validate_on_submit can be used
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if not form.validate_on_submit():
+        return error(INVALID_LOGIN, 401)
+    user = User.query.filter(func.lower(User.email) == form.email.data.lower()).first()
+    if not user or not user.check_password(form.password.data):
+        return error(INVALID_LOGIN, 401)
+    login_user(user, remember=True)
+    return {'user': user.to_dict()}
 
 
-@auth_routes.route('/logout')
+@auth_routes.route('/logout', methods=['POST'])
 def logout():
-    """
-    Logs a user out
-    """
+    """Logs a user out."""
     logout_user()
-    return {'message': 'User logged out'}
+    return {'message': 'Logged out.'}
 
 
 @auth_routes.route('/signup', methods=['POST'])
+@limiter.limit("5 per minute; 30 per hour")
 def sign_up():
-    """
-    Creates a new user and logs them in
-    """
+    """Creates a new user and logs them in."""
     form = SignUpForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        user = User(
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password'],
-            address=form.data.get('address', None),
-            phone=form.data.get('phone', None),
-            profile_image_id=form.data.get('profile_image_id', None),
-            first_name=form.data.get('first_name', None),
-            last_name=form.data.get('last_name', None)
-        )
-        db.session.add(user)
-        db.session.commit()
-        login_user(user)
-        return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if not form.validate_on_submit():
+        return error(form_errors(form), 400)
+    user = User(
+        username=form.username.data,
+        email=form.email.data.lower(),
+        password=form.password.data,
+        address=form.address.data or None,
+        phone=form.phone.data or None,
+        profile_image_id=form.profile_image_id.data or None,
+        first_name=form.first_name.data or None,
+        last_name=form.last_name.data or None,
+    )
+    db.session.add(user)
+    db.session.commit()
+    login_user(user, remember=True)
+    return {'user': user.to_dict()}, 201
 
 
-@auth_routes.route('/unauthorized')
-def unauthorized():
-    """
-    Returns unauthorized JSON when flask-login authentication fails
-    """
-    return {'errors': ['Unauthorized']}, 401
+@auth_routes.route('/profile', methods=['PATCH'])
+@login_required
+def update_profile():
+    """Updates the current user's profile details."""
+    form = ProfileForm()
+    if not form.validate_on_submit():
+        return error(form_errors(form), 400)
+    for field in ('address', 'phone', 'profile_image_id', 'first_name', 'last_name'):
+        setattr(current_user, field, getattr(form, field).data or None)
+    db.session.commit()
+    return {'user': current_user.to_dict()}
+
+
+@auth_routes.route('/password', methods=['POST'])
+@login_required
+@limiter.limit("5 per minute")
+def change_password():
+    """Changes the current user's password after verifying the old one."""
+    form = PasswordForm()
+    if not form.validate_on_submit():
+        return error(form_errors(form), 400)
+    if not current_user.check_password(form.current_password.data):
+        return error('Current password is incorrect.', 400)
+    current_user.password = form.new_password.data
+    db.session.commit()
+    return {'message': 'Password updated.'}
